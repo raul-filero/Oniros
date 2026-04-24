@@ -253,6 +253,23 @@ export default function HefaiaLanding({ onEnterOniros }) {
           </span>
           <span style={{ fontSize: 11, letterSpacing: '0.15em' }}>PRÓXIMAMENTE</span>
         </div>
+
+        <div style={{
+          marginTop: 12,
+          padding: '28px 32px',
+          border: '1px dashed rgba(0,0,0,0.15)',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          opacity: 0.4,
+          flexWrap: 'wrap',
+          gap: 8,
+        }}>
+          <span style={{ fontFamily: display, fontSize: 18, letterSpacing: '-0.02em' }}>
+            PROYECTO OCRE
+          </span>
+          <span style={{ fontSize: 11, letterSpacing: '0.15em' }}>PRÓXIMAMENTE</span>
+        </div>
       </section>
 
       {/* FOOTER */}
