@@ -58,7 +58,7 @@ export default function HefaiaLanding({ onEnterOniros }) {
             display: 'inline-block',
             boxShadow: '0 0 8px #2563eb',
           }} />
-          ENTROPIC LABS FOR HUMANITY PROGRESS
+          ENTROPIC LABS · CREATING VERTICAL HELPFUL TOOLS IN THE HORIZONTAL WAY FOR HUMANITY
         </div>
 
         <h1 style={{
@@ -309,7 +309,7 @@ export default function HefaiaLanding({ onEnterOniros }) {
         flexWrap: 'wrap',
         gap: 8,
       }}>
-        <span>HEFAIA · ENTROPIC LABS FOR HUMANITY PROGRESS · MADRID, 2026</span>
+        <span>HEFAIA · ENTROPIC LABS · MADRID, 2026</span>
         <span>hefaia.com</span>
       </footer>
 
