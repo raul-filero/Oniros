@@ -1,0 +1,49 @@
+{
+  "source": "Vectara HHEM Hallucination Leaderboard",
+  "sourceUrl": "https://github.com/vectara/hallucination-leaderboard",
+  "updatedAt": "2026-04-24T00:37:42.973Z",
+  "models": [
+    {
+      "id": "claude",
+      "name": "CLAUDE OPUS 4.6",
+      "company": "Anthropic",
+      "officialRate": 12.2
+    },
+    {
+      "id": "gpt5",
+      "name": "GPT-5.2",
+      "company": "OpenAI",
+      "officialRate": 10.8
+    },
+    {
+      "id": "gemini",
+      "name": "GEMINI 3 PRO",
+      "company": "Google",
+      "officialRate": 13.6
+    },
+    {
+      "id": "llama",
+      "name": "LLAMA 4 MAVERICK",
+      "company": "Meta",
+      "officialRate": 8.2
+    },
+    {
+      "id": "grok",
+      "name": "GROK-4 FAST",
+      "company": "xAI",
+      "officialRate": 20.2
+    },
+    {
+      "id": "deepseek",
+      "name": "DEEPSEEK V3.2",
+      "company": "DeepSeek",
+      "officialRate": 6.3
+    },
+    {
+      "id": "mistral",
+      "name": "MISTRAL LARGE",
+      "company": "Mistral AI",
+      "officialRate": 4.5
+    }
+  ]
+}
