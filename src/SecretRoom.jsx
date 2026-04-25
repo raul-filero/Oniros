@@ -411,7 +411,7 @@ function StarryNight({ onBack, onOpen }) {
 function DesignViewer({ format, setFormat, onClose }) {
   const sources = {
     html: '/secret/muletia-design.html',
-    pdf: '/secret/muletia-pater-v1.pdf',
+    pdf: '/secret/muletia-pater-v2.pdf',
   };
 
   return (
