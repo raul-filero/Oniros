@@ -5,6 +5,32 @@ import App from './App.jsx';
 import SecretRoom from './SecretRoom.jsx';
 import './index.css';
 
+function SuperpoderPage({ onBack }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', background: '#080818' }}>
+      <div style={{ padding: '8px 16px', display: 'flex', alignItems: 'center', borderBottom: '1px solid #2a2a5a' }}>
+        <button
+          onClick={onBack}
+          style={{
+            background: 'none', border: 'none', color: '#d4d4f0', cursor: 'pointer',
+            fontFamily: 'monospace', fontSize: 11, letterSpacing: '0.1em',
+            opacity: 0.5, display: 'flex', alignItems: 'center', gap: 6, padding: '4px 0',
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
+          onMouseLeave={(e) => (e.currentTarget.style.opacity = '0.5')}
+        >
+          ← HEFAIA
+        </button>
+      </div>
+      <iframe
+        src="/superpoder/"
+        title="Misión Superpoder"
+        style={{ flex: 1, border: 'none', width: '100%' }}
+      />
+    </div>
+  );
+}
+
 function EscorialPage({ onBack }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', background: '#080808' }}>
@@ -45,11 +71,15 @@ function Root() {
   if (page === 'escorial') {
     return <EscorialPage onBack={() => setPage('hefaia')} />;
   }
+  if (page === 'superpoder') {
+    return <SuperpoderPage onBack={() => setPage('hefaia')} />;
+  }
   return (
     <HefaiaLanding
       onEnterOniros={() => setPage('oniros')}
       onEnterSecret={() => setPage('secret')}
       onEnterEscorial={() => setPage('escorial')}
+      onEnterSuperpoder={() => setPage('superpoder')}
       lang={lang}
       setLang={setLang}
     />

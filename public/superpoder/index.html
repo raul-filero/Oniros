@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Misión Superpoder · TDAH</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- CONFIDENCIAL BAR -->
+<div class="conf-bar">◆ DOCUMENTO CONFIDENCIAL ◆ CUADERNO DE TRABAJO ◆ USO EXCLUSIVO DEL AGENTE ◆</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+      <polygon points="14,2 24,8 24,20 14,26 4,20 4,8" stroke="#ffd700" stroke-width="1.5" fill="none"/>
+      <circle cx="14" cy="14" r="5" stroke="#aaddff" stroke-width="1.5" fill="none"/>
+      <circle cx="14" cy="14" r="2" fill="#ffd700"/>
+      <line x1="14" y1="2" x2="14" y2="9" stroke="#ffd700" stroke-width="1"/>
+      <line x1="14" y1="19" x2="14" y2="26" stroke="#ffd700" stroke-width="1"/>
+      <line x1="4" y1="8" x2="9" y2="11" stroke="#ffd700" stroke-width="1"/>
+      <line x1="19" y1="17" x2="24" y2="20" stroke="#ffd700" stroke-width="1"/>
+      <line x1="24" y1="8" x2="19" y2="11" stroke="#ffd700" stroke-width="1"/>
+      <line x1="9" y1="17" x2="4" y2="20" stroke="#ffd700" stroke-width="1"/>
+    </svg>
+    SUPERPODER
+  </div>
+  <div class="nav-links">
+    <button class="active" data-section="portada">PORTADA</button>
+    <button data-section="control">CONTROL</button>
+    <button data-section="misiones">MISIONES</button>
+    <button data-section="calendario">CALENDARIO</button>
+    <button data-section="ecosistema">ECOSISTEMA</button>
+  </div>
+  <div class="nav-xp">
+    <div class="xp-label" id="nav-xp-label">⬡ 0 XP — Nivel 1</div>
+    <div class="xp-bar-wrap"><div class="xp-bar" id="nav-xp-bar" style="width:0%"></div></div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════
+     SECCIÓN: PORTADA
+═══════════════════════════════════════════════════════ -->
+<section id="portada" class="section active">
+  <div class="cover">
+
+    <!-- Escudo SVG central -->
+    <div class="shield-wrap">
+      <svg width="160" height="180" viewBox="0 0 160 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Escudo externo -->
+        <path d="M80 10 L150 40 L150 120 Q150 160 80 175 Q10 160 10 120 L10 40 Z"
+              stroke="#2a2a5a" stroke-width="2" fill="#0f0f24"/>
+        <!-- Escudo medio -->
+        <path d="M80 22 L138 48 L138 118 Q138 152 80 165 Q22 152 22 118 L22 48 Z"
+              stroke="#ffd700" stroke-width="1.5" fill="none" opacity=".7"/>
+        <!-- Octágono interno -->
+        <polygon points="80,40 105,50 115,75 105,100 80,110 55,100 45,75 55,50"
+                 stroke="#aaddff" stroke-width="1" fill="rgba(10,10,30,0.8)"/>
+        <!-- Cerebro / núcleo -->
+        <circle cx="80" cy="75" r="18" stroke="#aaddff" stroke-width="1.5" fill="none"/>
+        <circle cx="80" cy="75" r="10" stroke="#ffd700" stroke-width="1" fill="rgba(255,215,0,0.08)"/>
+        <circle cx="80" cy="75" r="4" fill="#ffd700"/>
+        <!-- Elementos orbitando -->
+        <!-- FUEGO (arriba) -->
+        <g transform="translate(80,40)">
+          <polygon points="0,-8 5,2 -5,2" fill="none" stroke="#ff4500" stroke-width="1.5"/>
+          <line x1="0" y1="2" x2="0" y2="6" stroke="#ff4500" stroke-width="1"/>
+        </g>
+        <!-- AGUA (derecha) -->
+        <g transform="translate(115,75)">
+          <path d="M0,-7 C4,-3 4,3 0,5 C-4,3 -4,-3 0,-7Z" fill="none" stroke="#0088ff" stroke-width="1.5"/>
+        </g>
+        <!-- TIERRA (abajo) -->
+        <g transform="translate(80,110)">
+          <polygon points="0,-6 6,3 -6,3" fill="none" stroke="#22a44a" stroke-width="1.5"/>
+        </g>
+        <!-- AIRE (izquierda) -->
+        <g transform="translate(45,75)">
+          <path d="M-5,0 Q0,-7 5,0 Q0,7 -5,0Z" fill="none" stroke="#66aadd" stroke-width="1.5"/>
+        </g>
+        <!-- Líneas de conexión -->
+        <line x1="80" y1="48" x2="80" y2="57" stroke="#ffd700" stroke-width=".5" opacity=".4"/>
+        <line x1="107" y1="75" x2="98" y2="75" stroke="#ffd700" stroke-width=".5" opacity=".4"/>
+        <line x1="80" y1="102" x2="80" y2="93" stroke="#ffd700" stroke-width=".5" opacity=".4"/>
+        <line x1="53" y1="75" x2="62" y2="75" stroke="#ffd700" stroke-width=".5" opacity=".4"/>
+      </svg>
+    </div>
+
+    <!-- Título -->
+    <div class="cover-title">
+      <span class="big">MISIÓN SUPERPODER</span>
+      <span class="sub">MANUAL DE AUTORREGULACIÓN · TDAH</span>
+    </div>
+
+    <!-- Campo AGENTE -->
+    <div class="agent-form">
+      <label>AGENTE</label>
+      <input type="text" id="agent-input" placeholder="Tu nombre aquí" maxlength="40">
+      <button id="save-agent">GUARDAR</button>
+    </div>
+
+    <!-- Elemento activo del día -->
+    <div>
+      <div style="text-align:center;font-size:.68rem;letter-spacing:.12em;color:var(--text-dim);margin-bottom:.75rem;">ELEMENTO ACTIVO HOY</div>
+      <div class="elements-row" id="element-selector">
+        <div class="el-chip fuego" data-el="fuego">
+          <svg width="14" height="16" viewBox="0 0 14 16"><path d="M7 1C7 1 10 5 10 8C10 10.2 8.2 12 7 12C5.8 12 4 10.2 4 8C4 5 7 1 7 1Z" stroke="#ff4500" stroke-width="1.2" fill="none"/><line x1="7" y1="12" x2="7" y2="15" stroke="#ff4500" stroke-width="1.2"/></svg>
+          FUEGO
+        </div>
+        <div class="el-chip agua" data-el="agua">
+          <svg width="12" height="16" viewBox="0 0 12 16"><path d="M6 1C6 1 11 7 11 11C11 13.8 8.8 16 6 16C3.2 16 1 13.8 1 11C1 7 6 1 6 1Z" stroke="#0088ff" stroke-width="1.2" fill="none"/></svg>
+          AGUA
+        </div>
+        <div class="el-chip tierra" data-el="tierra">
+          <svg width="16" height="14" viewBox="0 0 16 14"><polygon points="8,1 15,13 1,13" stroke="#22a44a" stroke-width="1.2" fill="none"/><line x1="8" y1="6" x2="8" y2="10" stroke="#22a44a" stroke-width="1"/></svg>
+          TIERRA
+        </div>
+        <div class="el-chip aire" data-el="aire">
+          <svg width="16" height="12" viewBox="0 0 16 12"><path d="M1,6 Q4,1 8,6 Q12,11 15,6" stroke="#66aadd" stroke-width="1.2" fill="none"/><path d="M1,3 Q4,0 7,3" stroke="#66aadd" stroke-width=".8" fill="none" opacity=".5"/></svg>
+          AIRE
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats rápidos -->
+    <div class="cover-stats" id="cover-stats">
+      <div class="stat-box"><div class="n" id="stat-total">0</div><div class="l">MISIONES</div></div>
+      <div class="stat-box"><div class="n" id="stat-done">0</div><div class="l">COMPLETADAS</div></div>
+      <div class="stat-box"><div class="n" id="stat-xp">0</div><div class="l">XP TOTAL</div></div>
+      <div class="stat-box"><div class="n" id="stat-level">1</div><div class="l">NIVEL</div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECCIÓN: PANEL DE CONTROL POLIVAGAL
+═══════════════════════════════════════════════════════ -->
+<section id="control" class="section">
+  <h2 class="section-title">PANEL DE CONTROL POLIVAGAL</h2>
+
+  <div class="polyvagal-grid">
+
+    <!-- TIGRE -->
+    <div class="animal-card tigre" data-animal="tigre">
+      <svg class="animal-svg" width="72" height="72" viewBox="0 0 72 72">
+        <!-- cabeza angular tigre -->
+        <polygon points="36,8 56,20 60,40 52,58 36,64 20,58 12,40 16,20" stroke="#ff7700" stroke-width="2" fill="rgba(255,119,0,0.08)"/>
+        <!-- ojos -->
+        <polygon points="24,28 30,26 32,32 26,34" stroke="#ff7700" stroke-width="1.5" fill="rgba(255,119,0,0.2)"/>
+        <polygon points="48,28 42,26 40,32 46,34" stroke="#ff7700" stroke-width="1.5" fill="rgba(255,119,0,0.2)"/>
+        <!-- nariz -->
+        <polygon points="36,40 33,38 39,38" stroke="#ff7700" stroke-width="1" fill="#ff7700"/>
+        <!-- rayas -->
+        <line x1="20" y1="28" x2="14" y2="24" stroke="#ff7700" stroke-width="1" opacity=".5"/>
+        <line x1="52" y1="28" x2="58" y2="24" stroke="#ff7700" stroke-width="1" opacity=".5"/>
+        <!-- alerta indicator -->
+        <circle cx="36" cy="14" r="3" fill="none" stroke="#ff7700" stroke-width="1.5" opacity=".6"/>
+      </svg>
+      <div class="animal-name">TIGRE</div>
+      <div class="animal-desc">Estado de alerta activa.<br>Mucha energía, difícil concentrarse.</div>
+      <ul class="animal-tips">
+        <li>Muévete: salta, camina, estira</li>
+        <li>Respiración 4-7-8 para bajar revoluciones</li>
+        <li>Tareas físicas o de alta energía</li>
+        <li>Música rítmica y movimiento</li>
+      </ul>
+    </div>
+
+    <!-- BÚHO -->
+    <div class="animal-card buho" data-animal="buho">
+      <svg class="animal-svg" width="72" height="72" viewBox="0 0 72 72">
+        <!-- cuerpo búho ovalado -->
+        <ellipse cx="36" cy="42" rx="20" ry="24" stroke="#22cc77" stroke-width="2" fill="rgba(34,204,119,0.08)"/>
+        <!-- ojos concéntricos -->
+        <circle cx="27" cy="34" r="9" stroke="#22cc77" stroke-width="1.5" fill="none"/>
+        <circle cx="27" cy="34" r="5" stroke="#22cc77" stroke-width="1.2" fill="rgba(34,204,119,0.15)"/>
+        <circle cx="27" cy="34" r="2" fill="#22cc77"/>
+        <circle cx="45" cy="34" r="9" stroke="#22cc77" stroke-width="1.5" fill="none"/>
+        <circle cx="45" cy="34" r="5" stroke="#22cc77" stroke-width="1.2" fill="rgba(34,204,119,0.15)"/>
+        <circle cx="45" cy="34" r="2" fill="#22cc77"/>
+        <!-- pico -->
+        <polygon points="36,38 33,44 39,44" stroke="#22cc77" stroke-width="1" fill="rgba(34,204,119,0.3)"/>
+        <!-- orejas -->
+        <polygon points="22,18 18,8 28,14" stroke="#22cc77" stroke-width="1.5" fill="none"/>
+        <polygon points="50,18 54,8 44,14" stroke="#22cc77" stroke-width="1.5" fill="none"/>
+      </svg>
+      <div class="animal-name">BÚHO</div>
+      <div class="animal-desc">Estado de aprendizaje y calma.<br>Zona óptima de rendimiento.</div>
+      <ul class="animal-tips">
+        <li>¡Aprovecha para estudiar y crear!</li>
+        <li>Tareas complejas que requieren enfoque</li>
+        <li>Ambiente tranquilo con música suave</li>
+        <li>Toma notas, conecta ideas</li>
+      </ul>
+    </div>
+
+    <!-- TORTUGA -->
+    <div class="animal-card tortuga" data-animal="tortuga">
+      <svg class="animal-svg" width="72" height="72" viewBox="0 0 72 72">
+        <!-- caparazón hexagonal -->
+        <polygon points="36,14 52,24 52,48 36,58 20,48 20,24" stroke="#8855ff" stroke-width="2" fill="rgba(136,85,255,0.08)"/>
+        <!-- patrón interno hexágono -->
+        <polygon points="36,22 46,28 46,44 36,50 26,44 26,28" stroke="#8855ff" stroke-width="1" fill="none" opacity=".5"/>
+        <polygon points="36,30 41,33 41,41 36,44 31,41 31,33" stroke="#8855ff" stroke-width="1" fill="rgba(136,85,255,0.15)"/>
+        <!-- cabeza -->
+        <circle cx="36" cy="10" r="6" stroke="#8855ff" stroke-width="1.5" fill="rgba(136,85,255,0.1)"/>
+        <!-- ojos cerrados -->
+        <line x1="33" y1="9" x2="35" y2="10" stroke="#8855ff" stroke-width="1.2"/>
+        <line x1="39" y1="9" x2="37" y2="10" stroke="#8855ff" stroke-width="1.2"/>
+        <!-- patas -->
+        <line x1="20" y1="30" x2="14" y2="34" stroke="#8855ff" stroke-width="1.5"/>
+        <line x1="20" y1="44" x2="14" y2="48" stroke="#8855ff" stroke-width="1.5"/>
+        <line x1="52" y1="30" x2="58" y2="34" stroke="#8855ff" stroke-width="1.5"/>
+        <line x1="52" y1="44" x2="58" y2="48" stroke="#8855ff" stroke-width="1.5"/>
+      </svg>
+      <div class="animal-name">TORTUGA</div>
+      <div class="animal-desc">Estado de sobrecarga o pausa.<br>El sistema dice: necesito parar.</div>
+      <ul class="animal-tips">
+        <li>Respeta la señal — descansa sin culpa</li>
+        <li>Tareas muy simples y rutinarias</li>
+        <li>Entorno sin estímulos: silencio, luz baja</li>
+        <li>Hidratación y snack energético</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Notas del día -->
+  <div class="card">
+    <div class="daily-notes">
+      <label>NOTAS DEL DÍA — <span id="today-date-label"></span></label>
+      <textarea id="daily-notes-input" placeholder="¿Cómo te sientes hoy? ¿Qué observas en tu sistema?"></textarea>
+      <button class="save-btn" id="save-daily">GUARDAR ESTADO DEL DÍA</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECCIÓN: MISIONES
+═══════════════════════════════════════════════════════ -->
+<section id="misiones" class="section">
+  <h2 class="section-title">MISIONES</h2>
+
+  <div class="missions-layout">
+
+    <!-- Formulario nueva misión -->
+    <div class="task-form">
+      <h3>NUEVA MISIÓN</h3>
+
+      <div class="form-field">
+        <label>TÍTULO *</label>
+        <input type="text" id="task-title" placeholder="Nombre de la misión..." maxlength="80">
+      </div>
+
+      <div class="form-field">
+        <label>DESCRIPCIÓN</label>
+        <textarea id="task-desc" placeholder="Detalles opcionales..." rows="2" style="resize:vertical"></textarea>
+      </div>
+
+      <div class="form-field">
+        <label>NIVEL DE ENERGÍA</label>
+        <div class="energy-selector" id="energy-selector">
+          <div class="energy-btn active" data-energy="alta">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <!-- Cohete: alta energía -->
+              <path d="M11 2 C11 2 15 6 15 11 L11 20 L7 11 C7 6 11 2 11 2Z" stroke="#ff6a00" stroke-width="1.5" fill="rgba(255,106,0,0.15)"/>
+              <circle cx="11" cy="9" r="2" stroke="#ff6a00" stroke-width="1.2" fill="none"/>
+              <path d="M8 17 L6 21 M14 17 L16 21" stroke="#ff6a00" stroke-width="1.2"/>
+              <path d="M9 19 Q11 22 13 19" stroke="#ffaa44" stroke-width="1" fill="none"/>
+            </svg>
+            <span>ALTA</span>
+          </div>
+          <div class="energy-btn" data-energy="media">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <!-- Pulso cardíaco: energía media -->
+              <polyline points="2,11 5,11 7,6 9,16 11,8 13,14 15,11 20,11" stroke="#f0c040" stroke-width="1.6" fill="none" stroke-linejoin="round"/>
+            </svg>
+            <span>MEDIA</span>
+          </div>
+          <div class="energy-btn" data-energy="baja">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <!-- Luna: baja energía -->
+              <path d="M15 4 A8 8 0 1 0 15 18 A5 5 0 1 1 15 4Z" stroke="#7799cc" stroke-width="1.5" fill="rgba(119,153,204,0.12)"/>
+              <circle cx="16" cy="8" r="1" fill="#7799cc"/>
+              <circle cx="18" cy="12" r="0.7" fill="#7799cc" opacity=".6"/>
+            </svg>
+            <span>BAJA</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label>FECHA LÍMITE (opcional)</label>
+        <input type="datetime-local" id="task-due">
+      </div>
+
+      <div class="form-field">
+        <label>XP AL COMPLETAR</label>
+        <div class="xp-row">
+          <input type="range" id="task-xp" min="5" max="100" step="5" value="10">
+          <span id="task-xp-label">10 XP</span>
+        </div>
+      </div>
+
+      <button class="submit-btn" id="add-task-btn">⬡ CREAR MISIÓN</button>
+    </div>
+
+    <!-- Lista de misiones -->
+    <div class="tasks-panel">
+      <div class="tasks-filters">
+        <button class="filter-btn active" data-filter="all">TODAS</button>
+        <button class="filter-btn" data-filter="pending">PENDIENTES</button>
+        <button class="filter-btn" data-filter="completed">COMPLETADAS</button>
+        <button class="filter-btn" data-filter="alta">ALTA</button>
+        <button class="filter-btn" data-filter="media">MEDIA</button>
+        <button class="filter-btn" data-filter="baja">BAJA</button>
+      </div>
+      <div class="tasks-list" id="tasks-list">
+        <div class="tasks-empty">Aún no hay misiones. ¡Crea la primera!</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECCIÓN: CALENDARIO
+═══════════════════════════════════════════════════════ -->
+<section id="calendario" class="section">
+  <h2 class="section-title">CALENDARIO</h2>
+
+  <div class="cal-header">
+    <button class="cal-nav-btn" id="cal-prev">‹</button>
+    <div class="cal-month-label" id="cal-month-label"></div>
+    <button class="cal-nav-btn" id="cal-next">›</button>
+  </div>
+
+  <div class="cal-grid" id="cal-grid">
+    <!-- generado por JS -->
+  </div>
+
+  <div style="margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap;font-size:.7rem;color:var(--text-dim);">
+    <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--fire);margin-right:4px;vertical-align:middle;"></span>Misión Fuego</span>
+    <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--water);margin-right:4px;vertical-align:middle;"></span>Misión Agua</span>
+    <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--earth);margin-right:4px;vertical-align:middle;"></span>Misión Tierra</span>
+    <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--air);margin-right:4px;vertical-align:middle;"></span>Misión Aire</span>
+    <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--tiger);margin-right:4px;vertical-align:middle;"></span>Estado Tigre</span>
+    <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--owl);margin-right:4px;vertical-align:middle;"></span>Estado Búho</span>
+    <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--turtle);margin-right:4px;vertical-align:middle;"></span>Estado Tortuga</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECCIÓN: ECOSISTEMA
+═══════════════════════════════════════════════════════ -->
+<section id="ecosistema" class="section">
+  <h2 class="section-title">¿POR QUÉ SUPERPODER?</h2>
+
+  <!-- Comparativa -->
+  <div class="eco-compare">
+    <div class="eco-col neuro">
+      <h3>⚙ SISTEMA NEUROTÍPICO</h3>
+      <div class="eco-item">
+        <svg class="icon" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="12" stroke="#555588" stroke-width="1.5"/>
+          <path d="M10 10 L22 22M22 10 L10 22" stroke="#555588" stroke-width="2"/>
+        </svg>
+        <div class="eco-item-body"><strong>Fuerza de voluntad</strong><span>Exige ignorar cómo funciona tu cerebro</span></div>
+      </div>
+      <div class="eco-item">
+        <svg class="icon" viewBox="0 0 32 32" fill="none">
+          <rect x="6" y="6" width="20" height="20" stroke="#555588" stroke-width="1.5"/>
+          <line x1="6" y1="16" x2="26" y2="16" stroke="#555588" stroke-width="1"/>
+          <line x1="16" y1="6" x2="16" y2="26" stroke="#555588" stroke-width="1"/>
+        </svg>
+        <div class="eco-item-body"><strong>Rutinas rígidas</strong><span>No contemplan la variabilidad del TDAH</span></div>
+      </div>
+      <div class="eco-item">
+        <svg class="icon" viewBox="0 0 32 32" fill="none">
+          <polygon points="16,4 28,28 4,28" stroke="#555588" stroke-width="1.5"/>
+          <line x1="16" y1="12" x2="16" y2="22" stroke="#555588" stroke-width="1.5"/>
+          <circle cx="16" cy="25" r="1.5" fill="#555588"/>
+        </svg>
+        <div class="eco-item-body"><strong>Culpa por el déficit</strong><span>Enfocado en lo que "falta" en lugar de adaptarse</span></div>
+      </div>
+    </div>
+
+    <div class="eco-col super">
+      <h3>⬡ SISTEMA SUPERPODER</h3>
+      <div class="eco-item">
+        <svg class="icon" viewBox="0 0 32 32" fill="none">
+          <polygon points="16,4 20,12 28,12 22,18 24,26 16,22 8,26 10,18 4,12 12,12" stroke="#ffd700" stroke-width="1.5" fill="rgba(255,215,0,0.1)"/>
+        </svg>
+        <div class="eco-item-body"><strong>Trabaja con tu cerebro</strong><span>Usa la dopamina y la novedad como combustible</span></div>
+      </div>
+      <div class="eco-item">
+        <svg class="icon" viewBox="0 0 32 32" fill="none">
+          <path d="M8 24 Q16 6 24 24" stroke="#ffd700" stroke-width="1.5" fill="none"/>
+          <circle cx="12" cy="18" r="2" fill="#ffd700"/>
+          <circle cx="20" cy="18" r="2" fill="#ffd700"/>
+          <circle cx="16" cy="12" r="2" fill="#ffd700"/>
+        </svg>
+        <div class="eco-item-body"><strong>Adaptación fluida</strong><span>Sistemas que se moldean a tu estado polivagal</span></div>
+      </div>
+      <div class="eco-item">
+        <svg class="icon" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="12" stroke="#ffd700" stroke-width="1.5" fill="rgba(255,215,0,0.05)"/>
+          <path d="M10 16 L14 20 L22 12" stroke="#ffd700" stroke-width="2"/>
+        </svg>
+        <div class="eco-item-body"><strong>XP y progresión</strong><span>Gamificación que activa el circuito de recompensa</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Los 4 elementos -->
+  <h2 class="section-title" style="margin-top:2rem;">LOS 4 ELEMENTOS</h2>
+  <div class="elements-full">
+    <div class="el-card fuego">
+      <svg width="50" height="56" viewBox="0 0 50 56">
+        <path d="M25 4 C25 4 36 16 36 26 C36 34.8 31.5 40 25 42 C18.5 40 14 34.8 14 26 C14 16 25 4 25 4Z" stroke="#ff4500" stroke-width="2" fill="rgba(255,69,0,0.12)"/>
+        <path d="M25 20 C25 20 30 26 30 30 C30 33.3 27.8 36 25 36 C22.2 36 20 33.3 20 30 C20 26 25 20 25 20Z" stroke="#ff8c00" stroke-width="1.5" fill="rgba(255,140,0,0.15)"/>
+        <line x1="25" y1="42" x2="25" y2="52" stroke="#ff4500" stroke-width="2"/>
+      </svg>
+      <h3>FUEGO</h3>
+      <p>Enfoque, pasión, urgencia creativa. Úsalo para proyectos que exigen intensidad y velocidad.</p>
+    </div>
+    <div class="el-card agua">
+      <svg width="44" height="56" viewBox="0 0 44 56">
+        <path d="M22 4 C22 4 40 22 40 36 C40 46.5 32 53 22 53 C12 53 4 46.5 4 36 C4 22 22 4 22 4Z" stroke="#0088ff" stroke-width="2" fill="rgba(0,136,255,0.12)"/>
+        <path d="M22 20 C22 20 32 30 32 37 C32 42.5 27.5 46 22 46 C16.5 46 12 42.5 12 37 C12 30 22 20 22 20Z" stroke="#00ccff" stroke-width="1.5" fill="rgba(0,204,255,0.12)"/>
+      </svg>
+      <h3>AGUA</h3>
+      <p>Calma, fluidez, adaptación. Perfecta para tareas de organización y reflexión profunda.</p>
+    </div>
+    <div class="el-card tierra">
+      <svg width="52" height="50" viewBox="0 0 52 50">
+        <polygon points="26,4 50,46 2,46" stroke="#22a44a" stroke-width="2" fill="rgba(34,164,74,0.1)"/>
+        <polygon points="26,16 40,40 12,40" stroke="#88dd44" stroke-width="1.5" fill="rgba(136,221,68,0.1)"/>
+        <line x1="26" y1="24" x2="26" y2="36" stroke="#22a44a" stroke-width="1.5"/>
+        <line x1="20" y1="36" x2="32" y2="36" stroke="#22a44a" stroke-width="1.5"/>
+      </svg>
+      <h3>TIERRA</h3>
+      <p>Estructura, persistencia, raíz. Para hábitos, rutinas y proyectos de largo plazo.</p>
+    </div>
+    <div class="el-card aire">
+      <svg width="52" height="44" viewBox="0 0 52 44">
+        <path d="M4 22 Q13 4 26 22 Q39 40 48 22" stroke="#66aadd" stroke-width="2" fill="none"/>
+        <path d="M4 14 Q13 2 22 14" stroke="#aaddff" stroke-width="1.2" fill="none" opacity=".6"/>
+        <path d="M30 30 Q39 42 48 30" stroke="#aaddff" stroke-width="1.2" fill="none" opacity=".6"/>
+        <circle cx="26" cy="22" r="3" fill="none" stroke="#66aadd" stroke-width="1.5"/>
+      </svg>
+      <h3>AIRE</h3>
+      <p>Creatividad, ideas, expansión. Ideal para lluvia de ideas, planificación y conexiones inesperadas.</p>
+    </div>
+  </div>
+
+</section>
+
+<!-- Toast container -->
+<div class="toast-container" id="toast-container"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

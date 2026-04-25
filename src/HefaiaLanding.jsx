@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 import { ArrowUpRight, AlertTriangle, X, Globe } from 'lucide-react';
-import { DroneIcon, PlaneIcon } from './SecretRoom.jsx';
+import { DroneIcon, PlaneIcon, BoltIcon } from './SecretRoom.jsx';
 import { I18N } from './i18n/hefaiaLanding.js';
 
-export default function HefaiaLanding({ onEnterOniros, onEnterSecret, onEnterEscorial, lang: langProp, setLang: setLangProp }) {
+export default function HefaiaLanding({ onEnterOniros, onEnterSecret, onEnterEscorial, onEnterSuperpoder, lang: langProp, setLang: setLangProp }) {
   const [showSecretModal, setShowSecretModal] = useState(false);
   const [secretPwd, setSecretPwd] = useState('');
   const [secretError, setSecretError] = useState(false);
+  const [showSuperpoderModal, setShowSuperpoderModal] = useState(false);
+  const [superpoderPwd, setSuperpoderPwd] = useState('');
+  const [superpoderError, setSuperpoderError] = useState(false);
   // Lang sincronizado via props desde main.jsx; fallback local si se monta solo.
   const [langLocal, setLangLocal] = useState('en');
   const lang = langProp ?? langLocal;
@@ -31,6 +34,25 @@ export default function HefaiaLanding({ onEnterOniros, onEnterSecret, onEnterEsc
     setShowSecretModal(false);
     setSecretPwd('');
     setSecretError(false);
+  }
+
+  function handleSuperpoderSubmit(e) {
+    e.preventDefault();
+    if (superpoderPwd.trim().toLowerCase() === 'movimiento') {
+      setShowSuperpoderModal(false);
+      setSuperpoderPwd('');
+      setSuperpoderError(false);
+      onEnterSuperpoder?.();
+    } else {
+      setSuperpoderError(true);
+      setSuperpoderPwd('');
+    }
+  }
+
+  function closeSuperpoderModal() {
+    setShowSuperpoderModal(false);
+    setSuperpoderPwd('');
+    setSuperpoderError(false);
   }
 
   useEffect(() => {
@@ -450,6 +472,32 @@ export default function HefaiaLanding({ onEnterOniros, onEnterSecret, onEnterEsc
           >
             <PlaneIcon size={14} />
           </button>
+          <button
+            onClick={() => setShowSuperpoderModal(true)}
+            title={t.boltTooltip}
+            aria-label={t.boltAria}
+            style={{
+              background: 'none',
+              border: 'none',
+              padding: 4,
+              cursor: 'pointer',
+              opacity: 0.55,
+              display: 'inline-flex',
+              alignItems: 'center',
+              transition: 'opacity 0.2s ease, transform 0.2s ease',
+              color: '#080808',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.opacity = '1';
+              e.currentTarget.style.transform = 'translateY(-2px) scale(1.1)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.opacity = '0.55';
+              e.currentTarget.style.transform = 'translateY(0) scale(1)';
+            }}
+          >
+            <BoltIcon size={14} />
+          </button>
           <span>hefaia.com</span>
         </span>
       </footer>
@@ -574,6 +622,105 @@ export default function HefaiaLanding({ onEnterOniros, onEnterSecret, onEnterEsc
                 }}
               >
                 {t.submit}
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {showSuperpoderModal && (
+        <div
+          onClick={closeSuperpoderModal}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            backgroundColor: 'rgba(8,8,24,0.88)',
+            zIndex: 200,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 20,
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              backgroundColor: '#080818',
+              color: '#d4d4f0',
+              border: '1px solid #2a2a5a',
+              maxWidth: 360,
+              width: '100%',
+              padding: 32,
+              fontFamily: mono,
+              position: 'relative',
+            }}
+          >
+            <button
+              onClick={closeSuperpoderModal}
+              aria-label={t.closeAria}
+              style={{
+                position: 'absolute', top: 12, right: 12,
+                background: 'none', border: 'none',
+                color: '#d4d4f0', cursor: 'pointer',
+                padding: 4, opacity: 0.6,
+              }}
+            >
+              <X size={16} />
+            </button>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
+              <BoltIcon size={20} color="#ffd700" />
+              <span style={{ fontFamily: display, fontSize: 18, letterSpacing: '-0.02em' }}>
+                {t.boltLabel}
+              </span>
+            </div>
+            <p style={{ fontSize: 11, opacity: 0.55, margin: '0 0 22px', letterSpacing: '0.1em' }}>
+              {t.accessCode}
+            </p>
+
+            <form onSubmit={handleSuperpoderSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+              <input
+                type="password"
+                autoFocus
+                value={superpoderPwd}
+                onChange={(e) => {
+                  setSuperpoderPwd(e.target.value);
+                  if (superpoderError) setSuperpoderError(false);
+                }}
+                placeholder="········"
+                style={{
+                  background: 'transparent',
+                  color: '#d4d4f0',
+                  border: '1px solid ' + (superpoderError ? '#9d0208' : '#2a2a5a'),
+                  padding: '12px 14px',
+                  fontFamily: mono,
+                  fontSize: 14,
+                  letterSpacing: '0.2em',
+                  outline: 'none',
+                  textAlign: 'center',
+                  boxSizing: 'border-box',
+                }}
+              />
+              {superpoderError && (
+                <span style={{ fontSize: 10, color: '#ef4444', letterSpacing: '0.1em', textAlign: 'center' }}>
+                  {t.boltWrongCode}
+                </span>
+              )}
+              <button
+                type="submit"
+                style={{
+                  backgroundColor: '#ffd700',
+                  color: '#080818',
+                  border: 'none',
+                  padding: '12px',
+                  fontFamily: mono,
+                  fontWeight: 700,
+                  fontSize: 12,
+                  letterSpacing: '0.2em',
+                  cursor: 'pointer',
+                }}
+              >
+                {t.boltSubmit}
               </button>
             </form>
           </div>

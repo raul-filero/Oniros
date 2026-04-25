@@ -522,4 +522,21 @@ function PlaneIcon({ size = 16, color = 'currentColor' }) {
   );
 }
 
-export { DroneIcon, PlaneIcon };
+function BoltIcon({ size = 16, color = 'currentColor' }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color}
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+    </svg>
+  );
+}
+
+export { DroneIcon, PlaneIcon, BoltIcon };
