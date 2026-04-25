@@ -212,14 +212,17 @@ function getDanger(ratio, t) {
   return { level: t.dangerCrit, color: '#7f1d1d', bg: '#9d0208' };
 }
 
-export default function Alucinometro({ onBack }) {
+export default function Alucinometro({ onBack, lang: langProp, setLang: setLangProp }) {
   const [models, setModels] = useState(INITIAL_MODELS);
   const [showModal, setShowModal] = useState(false);
   const [selectedId, setSelectedId] = useState('gemini');
   const [formText, setFormText] = useState('');
   const [formUrl, setFormUrl] = useState('');
   const [pulseId, setPulseId] = useState(null);
-  const [lang, setLang] = useState('es');
+  // Lang sincronizado con HefaiaLanding via props desde main.jsx; fallback local si se monta solo.
+  const [langLocal, setLangLocal] = useState('en');
+  const lang = langProp ?? langLocal;
+  const setLang = setLangProp ?? setLangLocal;
   const [mode, setMode] = useState('community');
 
   const t = I18N[lang];

@@ -3,11 +3,14 @@ import { ArrowUpRight, AlertTriangle, X, Globe } from 'lucide-react';
 import { DroneIcon } from './SecretRoom.jsx';
 import { I18N } from './i18n/hefaiaLanding.js';
 
-export default function HefaiaLanding({ onEnterOniros, onEnterSecret }) {
+export default function HefaiaLanding({ onEnterOniros, onEnterSecret, lang: langProp, setLang: setLangProp }) {
   const [showSecretModal, setShowSecretModal] = useState(false);
   const [secretPwd, setSecretPwd] = useState('');
   const [secretError, setSecretError] = useState(false);
-  const [lang, setLang] = useState('es');
+  // Lang sincronizado via props desde main.jsx; fallback local si se monta solo.
+  const [langLocal, setLangLocal] = useState('en');
+  const lang = langProp ?? langLocal;
+  const setLang = setLangProp ?? setLangLocal;
 
   const t = I18N[lang];
 
