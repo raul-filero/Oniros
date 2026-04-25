@@ -32,6 +32,8 @@ export const I18N = {
     wrongCode: 'el dron no responde a esa frecuencia',
     closeAria: 'cerrar',
     hangarAria: 'hangar',
+    planeTooltip: 'el escorial de mi madre',
+    planeAria: 'web escorial',
   },
   en: {
     company: 'ENTROPIC LABS',
@@ -63,6 +65,8 @@ export const I18N = {
     wrongCode: 'the drone is not responding to that frequency',
     closeAria: 'close',
     hangarAria: 'hangar',
+    planeTooltip: "my mother's website",
+    planeAria: 'escorial website',
   },
   zh: {
     company: 'ENTROPIC LABS',
@@ -94,5 +98,7 @@ export const I18N = {
     wrongCode: '无人机未响应该频率',
     closeAria: '关闭',
     hangarAria: '机库',
+    planeTooltip: '我母亲的网站',
+    planeAria: '埃斯科里亚尔网站',
   },
 };

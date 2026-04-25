@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { ArrowUpRight, AlertTriangle, X, Globe } from 'lucide-react';
-import { DroneIcon } from './SecretRoom.jsx';
+import { DroneIcon, PlaneIcon } from './SecretRoom.jsx';
 import { I18N } from './i18n/hefaiaLanding.js';
 
-export default function HefaiaLanding({ onEnterOniros, onEnterSecret, lang: langProp, setLang: setLangProp }) {
+export default function HefaiaLanding({ onEnterOniros, onEnterSecret, onEnterEscorial, lang: langProp, setLang: setLangProp }) {
   const [showSecretModal, setShowSecretModal] = useState(false);
   const [secretPwd, setSecretPwd] = useState('');
   const [secretError, setSecretError] = useState(false);
@@ -423,6 +423,32 @@ export default function HefaiaLanding({ onEnterOniros, onEnterSecret, lang: lang
             }}
           >
             <DroneIcon size={14} />
+          </button>
+          <button
+            onClick={() => onEnterEscorial?.()}
+            title={t.planeTooltip}
+            aria-label={t.planeAria}
+            style={{
+              background: 'none',
+              border: 'none',
+              padding: 4,
+              cursor: 'pointer',
+              opacity: 0.55,
+              display: 'inline-flex',
+              alignItems: 'center',
+              transition: 'opacity 0.2s ease, transform 0.2s ease',
+              color: '#080808',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.opacity = '1';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.opacity = '0.55';
+              e.currentTarget.style.transform = 'translateY(0)';
+            }}
+          >
+            <PlaneIcon size={14} />
           </button>
           <span>hefaia.com</span>
         </span>

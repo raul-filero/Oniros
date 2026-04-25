@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ArrowLeft } from 'lucide-react';
 
 // Drone SVG inline — vista cenital de quadcopter, lucide-react no trae icono de dron.
@@ -101,8 +101,23 @@ export default function SecretRoom({ onBack }) {
   return <StarryNight onBack={onBack} onOpen={() => setView('design')} />;
 }
 
+const IMAGE_COUNT = 21;
+const getStarImage = (i) => `/javier/javier-${String((i % IMAGE_COUNT) + 1).padStart(2, '0')}.jpg`;
+
 function StarryNight({ onBack, onOpen }) {
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [clickedStars, setClickedStars] = useState(new Set());
+  const [animatingStars, setAnimatingStars] = useState(new Set());
+  const [expandedImage, setExpandedImage] = useState(null);
+
+  function handleStarClick(i) {
+    if (clickedStars.has(i) || animatingStars.has(i)) return;
+    setAnimatingStars((prev) => new Set([...prev, i]));
+    setTimeout(() => {
+      setAnimatingStars((prev) => { const n = new Set(prev); n.delete(i); return n; });
+      setClickedStars((prev) => new Set([...prev, i]));
+    }, 550);
+  }
 
   return (
     <div
@@ -198,17 +213,68 @@ function StarryNight({ onBack, onOpen }) {
       {WORDS.map((word, i) => {
         const pos = POSITIONS[i];
         const isHovered = hoveredIndex === i;
+        const isAnimating = animatingStars.has(i);
+        const isClicked = clickedStars.has(i);
+
+        if (isClicked) {
+          return (
+            <div
+              key={word}
+              onClick={() => setExpandedImage(getStarImage(i))}
+              style={{
+                position: 'absolute',
+                left: pos.left,
+                top: pos.top,
+                transform: 'translate(-50%, -50%)',
+                zIndex: 4,
+                cursor: 'pointer',
+                animation: 'fadeInPhoto 0.4s ease forwards',
+              }}
+            >
+              <img
+                src={getStarImage(i)}
+                alt={word}
+                style={{
+                  width: 72,
+                  height: 72,
+                  objectFit: 'cover',
+                  borderRadius: '50%',
+                  boxShadow: '0 0 18px rgba(242,237,227,0.45)',
+                  display: 'block',
+                }}
+              />
+              <span
+                style={{
+                  display: 'block',
+                  textAlign: 'center',
+                  marginTop: 5,
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontStyle: 'italic',
+                  fontSize: 13,
+                  color: '#f2ede3',
+                  opacity: 0.75,
+                  whiteSpace: 'nowrap',
+                  textShadow: '0 0 12px rgba(0,0,0,0.9)',
+                }}
+              >
+                {word}
+              </span>
+            </div>
+          );
+        }
+
         return (
           <div
             key={word}
-            onMouseEnter={() => setHoveredIndex(i)}
+            onMouseEnter={() => !isAnimating && setHoveredIndex(i)}
             onMouseLeave={() => setHoveredIndex(null)}
+            onClick={() => handleStarClick(i)}
             style={{
               position: 'absolute',
               left: pos.left,
               top: pos.top,
               transform: 'translate(-50%, -50%)',
-              cursor: 'default',
+              cursor: isAnimating ? 'default' : 'pointer',
               padding: 18,
               zIndex: 3,
             }}
@@ -220,13 +286,18 @@ function StarryNight({ onBack, onOpen }) {
                 height: pos.size * 2,
                 backgroundColor: '#f2ede3',
                 borderRadius: '50%',
-                boxShadow: '0 0 8px rgba(242,237,227,0.55)',
-                opacity: isHovered ? 0 : 0.85,
-                transform: isHovered ? 'scale(0.4)' : 'scale(1)',
-                transition: 'opacity 0.45s ease, transform 0.45s ease',
-                animation: isHovered
-                  ? 'none'
-                  : `twinkle ${2.5 + ((i * 0.11) % 1.5)}s ${pos.delay}s ease-in-out infinite`,
+                boxShadow: isAnimating
+                  ? '0 0 50px 18px rgba(255,255,220,1)'
+                  : '0 0 8px rgba(242,237,227,0.55)',
+                opacity: isAnimating ? 0 : isHovered ? 0 : 0.85,
+                transform: isAnimating ? 'scale(8)' : isHovered ? 'scale(0.4)' : 'scale(1)',
+                transition: isAnimating
+                  ? 'opacity 0.55s ease, transform 0.55s ease, box-shadow 0.3s ease'
+                  : 'opacity 0.45s ease, transform 0.45s ease',
+                animation:
+                  isAnimating || isHovered
+                    ? 'none'
+                    : `twinkle ${2.5 + ((i * 0.11) % 1.5)}s ${pos.delay}s ease-in-out infinite`,
               }}
             />
             <span
@@ -241,7 +312,7 @@ function StarryNight({ onBack, onOpen }) {
                 fontWeight: 400,
                 fontSize: 22,
                 color: '#f2ede3',
-                opacity: isHovered ? 0.95 : 0,
+                opacity: isHovered && !isAnimating ? 0.95 : 0,
                 transition: 'opacity 0.45s ease',
                 pointerEvents: 'none',
                 textShadow: '0 0 18px rgba(0,0,0,0.95)',
@@ -297,10 +368,40 @@ function StarryNight({ onBack, onOpen }) {
         </button>
       </div>
 
+      {expandedImage && (
+        <div
+          onClick={() => setExpandedImage(null)}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            backgroundColor: 'rgba(4,6,15,0.88)',
+            zIndex: 50,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <img
+            src={expandedImage}
+            alt=""
+            style={{
+              maxWidth: '90vw',
+              maxHeight: '90vh',
+              objectFit: 'contain',
+              boxShadow: '0 0 60px rgba(242,237,227,0.2)',
+            }}
+          />
+        </div>
+      )}
+
       <style>{`
         @keyframes twinkle {
           0%, 100% { opacity: 0.85; }
           50% { opacity: 0.3; }
+        }
+        @keyframes fadeInPhoto {
+          from { opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
+          to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
         }
       `}</style>
     </div>
@@ -403,4 +504,22 @@ function DesignViewer({ format, setFormat, onClose }) {
   );
 }
 
-export { DroneIcon };
+// Icono avión — lucide-react no tiene uno con el estilo correcto
+function PlaneIcon({ size = 16, color = 'currentColor' }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color}
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M17.8 19.2L16 11l3.5-3.5C21 6 21 4 19 4c-2 0-4 1-5.5 2.5L10 10 3.2 8.6c-.6-.1-.9.8-.4 1.2l4.4 4.2L4 18l-1 1h3l1-1 4.6-3.2 4.2 4.4c.4.5 1.3.2 1.2-.4z" />
+    </svg>
+  );
+}
+
+export { DroneIcon, PlaneIcon };
