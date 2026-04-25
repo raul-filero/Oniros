@@ -86,16 +86,17 @@ export default function HefaiaLanding({ onEnterOniros, onEnterSecret }) {
 
         <h1 style={{
           fontFamily: display,
-          fontSize: 'clamp(52px, 10vw, 152px)',
-          letterSpacing: '-0.05em',
-          lineHeight: 0.88,
+          fontSize: 'clamp(36px, 8vw, 120px)',
+          letterSpacing: '-0.04em',
+          lineHeight: 0.95,
           margin: 0,
         }}>
-          LA<br />
+          EL TIEMPO ES UN<br />
           <span style={{
             WebkitTextStroke: '2px #080808',
             color: 'transparent',
-          }}>FORJA.</span>
+          }}>CONSTRUCTO HUMANO.</span><br />
+          EL FUTURO ES AHORA.
         </h1>
 
         <p style={{
