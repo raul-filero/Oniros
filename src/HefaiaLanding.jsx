@@ -7,6 +7,9 @@ export default function HefaiaLanding({ onEnterOniros, onEnterSecret, onEnterEsc
   const [showSecretModal, setShowSecretModal] = useState(false);
   const [secretPwd, setSecretPwd] = useState('');
   const [secretError, setSecretError] = useState(false);
+  const [showEscorialModal, setShowEscorialModal] = useState(false);
+  const [escorialPwd, setEscorialPwd] = useState('');
+  const [escorialError, setEscorialError] = useState(false);
   const [showSuperpoderModal, setShowSuperpoderModal] = useState(false);
   const [superpoderPwd, setSuperpoderPwd] = useState('');
   const [superpoderError, setSuperpoderError] = useState(false);
@@ -34,6 +37,25 @@ export default function HefaiaLanding({ onEnterOniros, onEnterSecret, onEnterEsc
     setShowSecretModal(false);
     setSecretPwd('');
     setSecretError(false);
+  }
+
+  function handleEscorialSubmit(e) {
+    e.preventDefault();
+    if (escorialPwd.trim().toLowerCase() === 'marivi') {
+      setShowEscorialModal(false);
+      setEscorialPwd('');
+      setEscorialError(false);
+      onEnterEscorial?.();
+    } else {
+      setEscorialError(true);
+      setEscorialPwd('');
+    }
+  }
+
+  function closeEscorialModal() {
+    setShowEscorialModal(false);
+    setEscorialPwd('');
+    setEscorialError(false);
   }
 
   function handleSuperpoderSubmit(e) {
@@ -447,7 +469,7 @@ export default function HefaiaLanding({ onEnterOniros, onEnterSecret, onEnterEsc
             <DroneIcon size={14} />
           </button>
           <button
-            onClick={() => onEnterEscorial?.()}
+            onClick={() => setShowEscorialModal(true)}
             title={t.planeTooltip}
             aria-label={t.planeAria}
             style={{
@@ -622,6 +644,105 @@ export default function HefaiaLanding({ onEnterOniros, onEnterSecret, onEnterEsc
                 }}
               >
                 {t.submit}
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {showEscorialModal && (
+        <div
+          onClick={closeEscorialModal}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            backgroundColor: 'rgba(8,8,8,0.78)',
+            zIndex: 200,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 20,
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              backgroundColor: '#0a0908',
+              color: '#f2ede3',
+              border: '1px solid #2a201a',
+              maxWidth: 360,
+              width: '100%',
+              padding: 32,
+              fontFamily: mono,
+              position: 'relative',
+            }}
+          >
+            <button
+              onClick={closeEscorialModal}
+              aria-label={t.closeAria}
+              style={{
+                position: 'absolute', top: 12, right: 12,
+                background: 'none', border: 'none',
+                color: '#f2ede3', cursor: 'pointer',
+                padding: 4, opacity: 0.6,
+              }}
+            >
+              <X size={16} />
+            </button>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
+              <PlaneIcon size={20} color="#c8a96e" />
+              <span style={{ fontFamily: display, fontSize: 18, letterSpacing: '-0.02em' }}>
+                {t.escorialLabel}
+              </span>
+            </div>
+            <p style={{ fontSize: 11, opacity: 0.55, margin: '0 0 22px', letterSpacing: '0.1em' }}>
+              {t.accessCode}
+            </p>
+
+            <form onSubmit={handleEscorialSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+              <input
+                type="password"
+                autoFocus
+                value={escorialPwd}
+                onChange={(e) => {
+                  setEscorialPwd(e.target.value);
+                  if (escorialError) setEscorialError(false);
+                }}
+                placeholder="········"
+                style={{
+                  background: 'transparent',
+                  color: '#f2ede3',
+                  border: '1px solid ' + (escorialError ? '#9d0208' : '#2a201a'),
+                  padding: '12px 14px',
+                  fontFamily: mono,
+                  fontSize: 14,
+                  letterSpacing: '0.2em',
+                  outline: 'none',
+                  textAlign: 'center',
+                  boxSizing: 'border-box',
+                }}
+              />
+              {escorialError && (
+                <span style={{ fontSize: 10, color: '#ef4444', letterSpacing: '0.1em', textAlign: 'center' }}>
+                  {t.escorialWrongCode}
+                </span>
+              )}
+              <button
+                type="submit"
+                style={{
+                  backgroundColor: '#c8a96e',
+                  color: '#0a0908',
+                  border: 'none',
+                  padding: '12px',
+                  fontFamily: mono,
+                  fontWeight: 700,
+                  fontSize: 12,
+                  letterSpacing: '0.2em',
+                  cursor: 'pointer',
+                }}
+              >
+                {t.escorialSubmit}
               </button>
             </form>
           </div>
