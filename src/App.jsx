@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { AlertTriangle, X, ArrowUpRight, Plus, Radio, Globe } from 'lucide-react';
 import vectaraData from './data/vectara.json';
 
@@ -189,6 +189,7 @@ const COMMUNITY_DATA = {
 const INITIAL_MODELS = [
   ...vectaraData.models.map((m) => ({
     ...m,
+    isSelf: false,
     communityReports: COMMUNITY_DATA[m.id]?.communityReports ?? 0,
     redditPosts: COMMUNITY_DATA[m.id]?.redditPosts ?? [],
   })),
@@ -234,20 +235,22 @@ export default function Alucinometro({ onBack }) {
     };
   }, []);
 
-  function scoreOf(model) {
-    if (mode === 'official') {
-      if (model.officialRate == null) return -1;
-      return model.officialRate;
-    }
-    return model.communityReports;
-  }
+  const scoreOf = useCallback(
+    (model) => {
+      if (mode === 'official') {
+        if (model.officialRate == null) return -1;
+        return model.officialRate;
+      }
+      return model.communityReports;
+    },
+    [mode]
+  );
 
   const sorted = useMemo(() => {
     const rated = models.filter((m) => scoreOf(m) !== -1);
     const unrated = models.filter((m) => scoreOf(m) === -1);
     return [...rated.sort((a, b) => scoreOf(a) - scoreOf(b)), ...unrated];
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [models, mode]);
+  }, [models, scoreOf]);
 
   const ratedValues = models.filter((m) => scoreOf(m) !== -1).map(scoreOf);
   const maxScore = Math.max(...ratedValues, 1);
@@ -432,7 +435,7 @@ export default function Alucinometro({ onBack }) {
         <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <Radio size={12} />{' '}
           {mode === 'official'
-            ? `VECTARA HHEM · ${vectaraData.models.length} modelos`
+            ? `VECTARA HHEM · ${sorted.length} modelos`
             : 'r/ChatGPT · r/Bard · r/ClaudeAI · r/LocalLLaMA · r/grok'}
         </span>
         <span>
