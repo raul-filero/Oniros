@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ArrowUpRight, AlertTriangle, X, Globe } from 'lucide-react';
-import { DroneIcon, PlaneIcon, BoltIcon } from './SecretRoom.jsx';
+import { DroneIcon, PlaneIcon, BoltIcon, BriefcaseIcon } from './SecretRoom.jsx';
 import { I18N } from './i18n/hefaiaLanding.js';
 
 export default function HefaiaLanding({ onEnterOniros, onEnterSecret, onEnterEscorial, onEnterSuperpoder, lang: langProp, setLang: setLangProp }) {
@@ -13,6 +13,9 @@ export default function HefaiaLanding({ onEnterOniros, onEnterSecret, onEnterEsc
   const [showSuperpoderModal, setShowSuperpoderModal] = useState(false);
   const [superpoderPwd, setSuperpoderPwd] = useState('');
   const [superpoderError, setSuperpoderError] = useState(false);
+  const [showCrmModal, setShowCrmModal] = useState(false);
+  const [crmPwd, setCrmPwd] = useState('');
+  const [crmError, setCrmError] = useState(false);
   // Lang sincronizado via props desde main.jsx; fallback local si se monta solo.
   const [langLocal, setLangLocal] = useState('en');
   const lang = langProp ?? langLocal;
@@ -75,6 +78,25 @@ export default function HefaiaLanding({ onEnterOniros, onEnterSecret, onEnterEsc
     setShowSuperpoderModal(false);
     setSuperpoderPwd('');
     setSuperpoderError(false);
+  }
+
+  function handleCrmSubmit(e) {
+    e.preventDefault();
+    if (crmPwd.trim().toLowerCase() === 'crmovimiento') {
+      setShowCrmModal(false);
+      setCrmPwd('');
+      setCrmError(false);
+      window.open('https://github.com/raul-filero/planeta-movimiento-crm', '_blank');
+    } else {
+      setCrmError(true);
+      setCrmPwd('');
+    }
+  }
+
+  function closeCrmModal() {
+    setShowCrmModal(false);
+    setCrmPwd('');
+    setCrmError(false);
   }
 
   useEffect(() => {
@@ -168,11 +190,15 @@ export default function HefaiaLanding({ onEnterOniros, onEnterSecret, onEnterEsc
           letterSpacing: '0.2em',
           marginBottom: 48,
           borderRadius: 2,
+          overflowWrap: 'break-word',
+          wordBreak: 'break-word',
+          hyphens: 'none',
         }}>
           <span style={{
             width: 6, height: 6, borderRadius: '50%',
             backgroundColor: '#2563eb',
             display: 'inline-block',
+            flexShrink: 0,
             boxShadow: '0 0 8px #2563eb',
           }} />
           {t.badge}
@@ -520,6 +546,32 @@ export default function HefaiaLanding({ onEnterOniros, onEnterSecret, onEnterEsc
           >
             <BoltIcon size={14} />
           </button>
+          <button
+            onClick={() => setShowCrmModal(true)}
+            title={t.crmTooltip}
+            aria-label={t.crmAria}
+            style={{
+              background: 'none',
+              border: 'none',
+              padding: 4,
+              cursor: 'pointer',
+              opacity: 0.55,
+              display: 'inline-flex',
+              alignItems: 'center',
+              transition: 'opacity 0.2s ease, transform 0.2s ease',
+              color: '#080808',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.opacity = '1';
+              e.currentTarget.style.transform = 'translateY(-1px)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.opacity = '0.55';
+              e.currentTarget.style.transform = 'translateY(0)';
+            }}
+          >
+            <BriefcaseIcon size={14} />
+          </button>
           <span>hefaia.com</span>
         </span>
       </footer>
@@ -842,6 +894,105 @@ export default function HefaiaLanding({ onEnterOniros, onEnterSecret, onEnterEsc
                 }}
               >
                 {t.boltSubmit}
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {showCrmModal && (
+        <div
+          onClick={closeCrmModal}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            backgroundColor: 'rgba(0,10,4,0.88)',
+            zIndex: 200,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 20,
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              backgroundColor: '#040d06',
+              color: '#d4f0dc',
+              border: '1px solid #1a3a22',
+              maxWidth: 360,
+              width: '100%',
+              padding: 32,
+              fontFamily: mono,
+              position: 'relative',
+            }}
+          >
+            <button
+              onClick={closeCrmModal}
+              aria-label={t.closeAria}
+              style={{
+                position: 'absolute', top: 12, right: 12,
+                background: 'none', border: 'none',
+                color: '#d4f0dc', cursor: 'pointer',
+                padding: 4, opacity: 0.6,
+              }}
+            >
+              <X size={16} />
+            </button>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
+              <BriefcaseIcon size={20} color="#22c55e" />
+              <span style={{ fontFamily: display, fontSize: 18, letterSpacing: '-0.02em' }}>
+                {t.crmLabel}
+              </span>
+            </div>
+            <p style={{ fontSize: 11, opacity: 0.55, margin: '0 0 22px', letterSpacing: '0.1em' }}>
+              {t.accessCode}
+            </p>
+
+            <form onSubmit={handleCrmSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+              <input
+                type="password"
+                autoFocus
+                value={crmPwd}
+                onChange={(e) => {
+                  setCrmPwd(e.target.value);
+                  if (crmError) setCrmError(false);
+                }}
+                placeholder="········"
+                style={{
+                  background: 'transparent',
+                  color: '#d4f0dc',
+                  border: '1px solid ' + (crmError ? '#9d0208' : '#1a3a22'),
+                  padding: '12px 14px',
+                  fontFamily: mono,
+                  fontSize: 14,
+                  letterSpacing: '0.2em',
+                  outline: 'none',
+                  textAlign: 'center',
+                  boxSizing: 'border-box',
+                }}
+              />
+              {crmError && (
+                <span style={{ fontSize: 10, color: '#ef4444', letterSpacing: '0.1em', textAlign: 'center' }}>
+                  {t.crmWrongCode}
+                </span>
+              )}
+              <button
+                type="submit"
+                style={{
+                  backgroundColor: '#22c55e',
+                  color: '#040d06',
+                  border: 'none',
+                  padding: '12px',
+                  fontFamily: mono,
+                  fontWeight: 700,
+                  fontSize: 12,
+                  letterSpacing: '0.2em',
+                  cursor: 'pointer',
+                }}
+              >
+                {t.crmSubmit}
               </button>
             </form>
           </div>
