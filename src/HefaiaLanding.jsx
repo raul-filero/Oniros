@@ -427,6 +427,7 @@ export default function HefaiaLanding({ onEnterOniros, onEnterSecret, onEnterEsc
         {/* PRÓXIMAMENTE */}
         {[
           { name: 'MEMULETIA', descKey: 'memuletiaDesc' },
+          { name: 'KEN', descKey: 'kenDesc' },
           { name: 'PROMPT MUSEUM AI', descKey: 'promptMuseumDesc' },
           { name: 'PROYECTO OCRE', descKey: 'proyectoOcreDesc' },
         ].map((item) => (
