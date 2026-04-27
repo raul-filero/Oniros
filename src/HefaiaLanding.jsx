@@ -486,9 +486,11 @@ export default function HefaiaLanding({ onEnterOniros, onEnterSecret, onEnterEsc
         </div>
 
         {/* NEUROMUSIC CARD */}
-        <div
-          onClick={() => window.location.href = '/neuromusic/'}
+        <a
+          href="/neuromusic/"
           style={{
+            display: 'block',
+            textDecoration: 'none',
             backgroundColor: '#060010',
             color: '#f0f0ff',
             padding: 'clamp(32px, 4vw, 56px)',
@@ -583,7 +585,7 @@ export default function HefaiaLanding({ onEnterOniros, onEnterSecret, onEnterEsc
 
             <ArrowUpRight size={32} strokeWidth={1.5} style={{ opacity: 0.35, color: '#b400ff' }} />
           </div>
-        </div>
+        </a>
 
         {/* PRÓXIMAMENTE */}
         {[
