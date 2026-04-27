@@ -224,56 +224,61 @@ export default function HefaiaLanding({ onEnterOniros, onEnterSecret, onEnterEsc
         maxWidth: 1100,
         margin: '0 auto',
       }}>
-        <video
-          src="/hefaia-logo.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          style={{
-            width: 'clamp(140px, 18vw, 220px)',
-            display: 'block',
-            marginBottom: 40,
-          }}
-        />
-        <div style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: 8,
-          border: '1px solid rgba(0,0,0,0.15)',
-          padding: '6px 14px',
-          fontSize: 10,
-          letterSpacing: '0.2em',
-          marginBottom: 48,
-          borderRadius: 2,
-          overflowWrap: 'break-word',
-          wordBreak: 'break-word',
-          hyphens: 'none',
-        }}>
-          <span style={{
-            width: 6, height: 6, borderRadius: '50%',
-            backgroundColor: '#2563eb',
-            display: 'inline-block',
-            flexShrink: 0,
-            boxShadow: '0 0 8px #2563eb',
-          }} />
-          {t.badge}
-        </div>
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: 'clamp(32px, 5vw, 80px)' }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 8,
+              border: '1px solid rgba(0,0,0,0.15)',
+              padding: '6px 14px',
+              fontSize: 10,
+              letterSpacing: '0.2em',
+              marginBottom: 48,
+              borderRadius: 2,
+              overflowWrap: 'break-word',
+              wordBreak: 'break-word',
+              hyphens: 'none',
+            }}>
+              <span style={{
+                width: 6, height: 6, borderRadius: '50%',
+                backgroundColor: '#2563eb',
+                display: 'inline-block',
+                flexShrink: 0,
+                boxShadow: '0 0 8px #2563eb',
+              }} />
+              {t.badge}
+            </div>
 
-        <h1 style={{
-          fontFamily: display,
-          fontSize: 'clamp(36px, 8vw, 120px)',
-          letterSpacing: lang === 'zh' ? '-0.02em' : '-0.04em',
-          lineHeight: 0.95,
-          margin: 0,
-        }}>
-          {t.heroLine1}<br />
-          <span style={{
-            WebkitTextStroke: '2px #080808',
-            color: 'transparent',
-          }}>{t.heroLine2}</span><br />
-          {t.heroLine3}
-        </h1>
+            <h1 style={{
+              fontFamily: display,
+              fontSize: 'clamp(36px, 8vw, 120px)',
+              letterSpacing: lang === 'zh' ? '-0.02em' : '-0.04em',
+              lineHeight: 0.95,
+              margin: 0,
+            }}>
+              {t.heroLine1}<br />
+              <span style={{
+                WebkitTextStroke: '2px #080808',
+                color: 'transparent',
+              }}>{t.heroLine2}</span><br />
+              {t.heroLine3}
+            </h1>
+          </div>
+
+          <video
+            src="/hefaia-logo.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{
+              width: 'clamp(140px, 20vw, 260px)',
+              flexShrink: 0,
+              marginTop: 8,
+            }}
+          />
+        </div>
 
         <p style={{
           marginTop: 40,
