@@ -92,7 +92,7 @@ export default function HefaiaLanding({ onEnterOniros, onEnterSecret, onEnterEsc
       setShowCrmModal(false);
       setCrmPwd('');
       setCrmError(false);
-      window.open('https://github.com/raul-filero/enki', '_blank');
+      window.open('https://github.com/raul-filero', '_blank');
     } else {
       setCrmError(true);
       setCrmPwd('');
