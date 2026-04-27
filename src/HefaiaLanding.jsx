@@ -178,9 +178,14 @@ export default function HefaiaLanding({ onEnterOniros, onEnterSecret, onEnterEsc
         flexWrap: 'wrap',
         gap: 12,
       }}>
-        <span style={{ fontFamily: display, fontSize: 20, letterSpacing: '-0.03em' }}>
-          HEFAIA
-        </span>
+        <video
+          src="/hefaia-logo.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{ height: 48, display: 'block' }}
+        />
         <div style={{ display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap' }}>
           <span style={{ fontSize: 11, letterSpacing: '0.15em', opacity: 0.45 }}>
             {t.company}
